@@ -1,27 +1,33 @@
-// import logo from "./logo.svg";
 import "./App.css";
-import Navbar from "./components/Navbar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Navbar from "./components/Navbar";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-  },
-  {
-    path: "/About",
-    element: <About />,
+    children: [
+      {
+        path: "/about",
+        element: (
+          <>
+            <About />
+            <Navbar />
+          </>
+        ),
+      },
+    ],
   },
 ]);
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
+    <>
+      {/* <Navbar /> */}
       <RouterProvider router={router} />
-    </div>
+    </>
   );
 }
 
