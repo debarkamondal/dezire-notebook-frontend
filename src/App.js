@@ -3,6 +3,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
+import NoteState from "./context/notes/NoteState";
 
 const router = createBrowserRouter([
   {
@@ -32,9 +33,10 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
-      <Outlet />
-      <RouterProvider router={router} />
+      <NoteState>
+        <Outlet />
+        <RouterProvider router={router} />
+      </NoteState>
     </>
   );
 }
