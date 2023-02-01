@@ -1,40 +1,28 @@
 import "./App.css";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Navbar from "./components/Navbar";
 import NoteState from "./context/notes/NoteState";
+import RootLayout from "./pages/RootLayout";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    children: [
-      {
-        index: true,
-        element: (
-          <>
-            <Home />
-          </>
-        ),
-      },
-      {
-        path: "/about",
-        element: (
-          <>
-            <Navbar />
-            <About />
-          </>
-        ),
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />} />
+      <Route path="/about" element={<About />} />
+    </Route>
+  )
+);
 
 function App() {
   return (
     <>
       <NoteState>
-        <Outlet />
         <RouterProvider router={router} />
       </NoteState>
     </>
