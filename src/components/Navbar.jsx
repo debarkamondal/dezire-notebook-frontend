@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   let location = useLocation();
@@ -14,9 +14,9 @@ const Navbar = () => {
         data-bs-theme="dark"
       >
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <NavLink className="navbar-brand" to="/">
             DezireNotebook
-          </Link>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -31,25 +31,25 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link
-                  className={`nav-link ${
+                <NavLink
+                  className={`nav-NavLink ${
                     location.pathname === "/" ? "active" : ""
                   }`}
                   aria-current="page"
                   to="/"
                 >
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link
-                  className={`nav-link ${
+                <NavLink
+                  className={`nav-NavLink ${
                     location.pathname === "/about" ? "active" : ""
                   }`}
                   to="/about"
                 >
                   About
-                </Link>
+                </NavLink>
               </li>
             </ul>
             <form className="d-flex" role="search">
