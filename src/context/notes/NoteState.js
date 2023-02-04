@@ -5,7 +5,7 @@ import NoteContext from "./noteContext";
 const NoteState = (props) => {
   const notesInit = [
     {
-      _id: "63debfe7dc3a4d55bb4f0491",
+      _id: "63debfe7dcert3a4d55bb4f0491",
       user: "63d5f000ddf52da7b65b19c8",
       title: "Dummy title",
       description: "dummy description",
@@ -14,7 +14,7 @@ const NoteState = (props) => {
       __v: 0,
     },
     {
-      _id: "63debfeddc3a4d55bb4f0493",
+      _id: "63debfehjddc3a4d55bb4f0493",
       user: "63d5f000ddf52da7b65b19c8",
       title: "Dummy title2",
       description: "dummy description2",
@@ -23,7 +23,16 @@ const NoteState = (props) => {
       __v: 0,
     },
     {
-      _id: "63debff1dc3a4d55bb4f0495",
+      _id: "63debff1asdc3a4d55bb4f0495",
+      user: "63d5f000ddf52da7b65b19c8",
+      title: "Dummy title23",
+      description: "dummy description23",
+      tag: "general",
+      date: "2023-02-04T20:28:33.722Z",
+      __v: 0,
+    },
+    {
+      _id: "63debff1dc3a4d5df5bb4f0495",
       user: "63d5f000ddf52da7b65b19c8",
       title: "Dummy title23",
       description: "dummy description23",
