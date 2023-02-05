@@ -5,7 +5,7 @@ import NoteItem from "./NoteItem";
 const Notes = () => {
   const context = useContext(noteContext);
   // eslint-disable-next-line
-  const { notes, setNotes } = context;
+  const { notes, setNotes, addNote } = context;
   return (
     <div className="container">
       <h2 className="text-center">Your Notes</h2>
