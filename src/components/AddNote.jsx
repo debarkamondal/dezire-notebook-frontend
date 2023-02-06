@@ -8,12 +8,17 @@ const AddNote = () => {
 
   const onChange = (e) => {
     setNote({ ...note, [e.target.id]: e.target.value });
-    console.log(e.target.id);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note);
+    setNote({ title: "", description: "", tag: "" });
+
+    // Flusing out the fields after submit button is clicked
+    document.getElementById("description").value = "";
+    document.getElementById("title").value = "";
+    document.getElementById("tag").value = "";
   };
   return (
     <>
@@ -28,6 +33,7 @@ const AddNote = () => {
               type="text"
               className="form-control"
               id="title"
+              // value={note.title}
               aria-describedby="title"
               placeholder="Enter you title here"
               onChange={onChange}
@@ -41,6 +47,7 @@ const AddNote = () => {
               type="text"
               className="form-control"
               id="tag"
+              // value={note.tag}
               aria-describedby="tag"
               placeholder="Enter you tag here"
               onChange={onChange}
@@ -53,6 +60,7 @@ const AddNote = () => {
             <textarea
               type="text"
               className="form-control"
+              // value={note.description}
               id="description"
               onChange={onChange}
             />
