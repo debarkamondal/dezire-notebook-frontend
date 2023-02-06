@@ -3,7 +3,10 @@ import { useState } from "react";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
+  const [notes, setNotes] = useState([]);
   const host = "http://localhost:5000";
+
+  // Fetching notes
   const getNotes = async (url = `${host}/api/notes/fetchallnotes`) => {
     const response = await fetch(url, {
       method: "GET",
@@ -13,29 +16,41 @@ const NoteState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkNWYwMDBkZGY1MmRhN2I2NWIxOWM4In0sImlhdCI6MTY3NDk5NDMxM30.-c2-lJ1FW6m1MwrDa3SYG2qOYyXMDVsBmuUinOLFgDg",
       },
     });
-    return response.json();
+    setNotes(await response.json());
   };
 
-  const [notes, setNotes] = useState([]);
-
   // Adding note
-  const addNote = (title, description, tag) => {
-    let note = {
-      _id: "63debff1dc3a4d5dfasdfas5bb4f0495",
-      user: "63d5f000ddf52da7b65b19c8",
-      title: "Dummy title ADDED",
-      description: "dummy description23",
-      tag: "general",
-      date: "2023-02-04T20:28:33.722Z",
-      __v: 0,
-    };
-
-    setNotes(notes.concat(note));
+  const addNote = async (note, url = `${host}/api/notes/addnote`) => {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkNWYwMDBkZGY1MmRhN2I2NWIxOWM4In0sImlhdCI6MTY3NDk5NDMxM30.-c2-lJ1FW6m1MwrDa3SYG2qOYyXMDVsBmuUinOLFgDg",
+      },
+      body: JSON.stringify({
+        title: note.title,
+        description: note.description,
+        tag: note.tag,
+      }),
+    });
+    note = await response.json();
+    setNotes(notes.concat(note)); // Updating the frontend
+    return note;
   };
 
   // Deleting note
 
-  const deleteNote = (id) => {
+  const deleteNote = async (id) => {
+    let url = `${host}/api/notes/deletenote/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkNWYwMDBkZGY1MmRhN2I2NWIxOWM4In0sImlhdCI6MTY3NDk5NDMxM30.-c2-lJ1FW6m1MwrDa3SYG2qOYyXMDVsBmuUinOLFgDg",
+      },
+    });
     setNotes(notes.filter((note) => id !== note._id));
   };
 
