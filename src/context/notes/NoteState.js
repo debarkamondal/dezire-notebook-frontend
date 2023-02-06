@@ -52,7 +52,7 @@ const NoteState = (props) => {
       },
     });
     setNotes(notes.filter((note) => id !== note._id));
-    return response.json();
+    return response;
   };
 
   // Edit note
