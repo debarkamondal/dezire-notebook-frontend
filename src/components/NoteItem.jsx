@@ -16,7 +16,7 @@ const NoteItem = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    updateNote(props.note, note);
+    updateNote(note);
     ref.current.click();
     // addNote(note);
   };

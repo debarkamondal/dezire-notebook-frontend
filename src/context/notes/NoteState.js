@@ -56,7 +56,7 @@ const NoteState = (props) => {
   };
 
   // Edit note
-  const updateNote = async (oldNote, newNote) => {
+  const updateNote = async (newNote) => {
     const id = newNote._id;
     let url = `${host}/api/notes/updatenote/${id}`;
     const response = await fetch(url, {
