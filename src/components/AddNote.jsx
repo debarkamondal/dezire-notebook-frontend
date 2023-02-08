@@ -33,7 +33,6 @@ const AddNote = () => {
               type="text"
               className="form-control"
               id="title"
-              // value={note.title}
               aria-describedby="title"
               placeholder="Enter you title here"
               onChange={onChange}
@@ -47,7 +46,6 @@ const AddNote = () => {
               type="text"
               className="form-control"
               id="tag"
-              // value={note.tag}
               aria-describedby="tag"
               placeholder="Enter you tag here"
               onChange={onChange}
@@ -60,7 +58,6 @@ const AddNote = () => {
             <textarea
               type="text"
               className="form-control"
-              // value={note.description}
               id="description"
               onChange={onChange}
             />

@@ -56,11 +56,47 @@ const NoteState = (props) => {
   };
 
   // Edit note
-  const editNote = (id, title, description, tag) => {};
+  const updateNote = async (oldNote, newNote) => {
+    const id = newNote._id;
+    let url = `${host}/api/notes/updatenote/${id}`;
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkNWYwMDBkZGY1MmRhN2I2NWIxOWM4In0sImlhdCI6MTY3NDk5NDMxM30.-c2-lJ1FW6m1MwrDa3SYG2qOYyXMDVsBmuUinOLFgDg",
+      },
+      // body: JSON.stringify({
+      //   title: newNote.title,
+      //   tag: newNote.tag,
+      //   description: newNote.description,
+      // }),
+      body: JSON.stringify({ ...newNote }),
+    });
+    // setNotes(
+    //   notes.map((note) => {
+    //     if (note._id === id) {
+    //       return {
+    //         title: newNote.title ? newNote.title : note.title,
+    //         description: newNote.description
+    //           ? newNote.description
+    //           : note.description,
+    //         tag: newNote.tag ? newNote.tag : note.tag,
+    //       };
+    //     } else return note;
+    //   })
+    // );
 
+    setNotes(
+      notes.map((note) => {
+        return { ...newNote };
+      })
+    );
+    return response.json();
+  };
   return (
     <NoteContext.Provider
-      value={{ notes, addNote, deleteNote, editNote, getNotes, setNotes }}
+      value={{ notes, addNote, deleteNote, updateNote, getNotes, setNotes }}
     >
       {props.children}
     </NoteContext.Provider>
