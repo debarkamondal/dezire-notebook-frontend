@@ -56,8 +56,8 @@ const NoteState = (props) => {
   };
 
   // Edit note
-  const updateNote = async (note) => {
-    const id = note._id;
+  const updateNote = async (newNote) => {
+    const id = newNote._id;
     let url = `${host}/api/notes/updatenote/${id}`;
     const response = await fetch(url, {
       method: "PUT",
@@ -66,12 +66,12 @@ const NoteState = (props) => {
         "auth-token":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkNWYwMDBkZGY1MmRhN2I2NWIxOWM4In0sImlhdCI6MTY3NDk5NDMxM30.-c2-lJ1FW6m1MwrDa3SYG2qOYyXMDVsBmuUinOLFgDg",
       },
-      body: JSON.stringify({ ...note }),
+      body: JSON.stringify({ ...newNote }),
     });
 
     setNotes(
       notes.map((note) => {
-        return { ...note };
+        return note._id === id ? { ...newNote } : { ...note };
       })
     );
     return response.json();
