@@ -1,19 +1,22 @@
 // import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
   const [notes, setNotes] = useState([]);
+  const navigate = useNavigate();
   const host = "http://localhost:5000";
-
+  const authToken = localStorage.getItem("authToken");
+  console.log(authToken);
+  if (!authToken) navigate("/login");
   // Fetching notes
   const getNotes = async (url = `${host}/api/notes/fetchallnotes`) => {
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkNWYwMDBkZGY1MmRhN2I2NWIxOWM4In0sImlhdCI6MTY3NDk5NDMxM30.-c2-lJ1FW6m1MwrDa3SYG2qOYyXMDVsBmuUinOLFgDg",
+        "auth-token": authToken,
       },
     });
     setNotes(await response.json());
@@ -25,8 +28,7 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkNWYwMDBkZGY1MmRhN2I2NWIxOWM4In0sImlhdCI6MTY3NDk5NDMxM30.-c2-lJ1FW6m1MwrDa3SYG2qOYyXMDVsBmuUinOLFgDg",
+        "auth-token": `${authToken}`,
       },
       body: JSON.stringify({
         title: note.title,

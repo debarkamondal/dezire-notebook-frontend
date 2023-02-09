@@ -10,7 +10,6 @@ const NoteItem = (props) => {
   const [note, setNote] = useState(props.note);
 
   const onChange = (e) => {
-    console.log(e.target.id);
     setNote({ ...note, [e.target.id]: e.target.value });
   };
 
