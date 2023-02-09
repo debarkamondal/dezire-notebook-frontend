@@ -83,6 +83,8 @@ const NoteItem = (props) => {
                     placeholder="Enter you title here"
                     onChange={onChange}
                     value={note.title}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -109,6 +111,8 @@ const NoteItem = (props) => {
                     id="description"
                     onChange={onChange}
                     value={note.description}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3 form-check"></div>
@@ -126,6 +130,7 @@ const NoteItem = (props) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={handleClick}
+                disabled={note.title.length < 5 || note.description.length < 5}
               >
                 Save changes
               </button>
