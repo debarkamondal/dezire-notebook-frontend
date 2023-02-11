@@ -21,12 +21,12 @@ const LoginPage = () => {
     });
     const json = await response.json();
     if ("authToken" in json) {
-      console.log(json.authToken);
       localStorage.setItem("authToken", json.authToken);
       navigate("/");
     } else console.log("invalid creds");
     return json;
   };
+
   return (
     <div className="container my-3">
       <form onSubmit={handleSubmit}>

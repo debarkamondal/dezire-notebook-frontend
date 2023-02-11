@@ -1,15 +1,11 @@
 // import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
   const [notes, setNotes] = useState([]);
-  const navigate = useNavigate();
   const host = "http://localhost:5000";
   const authToken = localStorage.getItem("authToken");
-  console.log(authToken);
-  if (!authToken) navigate("/login");
   // Fetching notes
   const getNotes = async (url = `${host}/api/notes/fetchallnotes`) => {
     const response = await fetch(url, {

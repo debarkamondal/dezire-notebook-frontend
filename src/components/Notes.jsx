@@ -4,7 +4,6 @@ import NoteItem from "./NoteItem";
 
 const Notes = () => {
   const context = useContext(noteContext);
-  // eslint-disable-next-line
   const { notes, getNotes } = context;
 
   useEffect(() => {
@@ -14,9 +13,11 @@ const Notes = () => {
     <div className="container">
       <h2 className="text-center">Your Notes</h2>
       <div className="row">
-        {notes.map((note) => {
-          return <NoteItem key={note._id} note={note} />;
-        })}
+        {notes.length !== 0
+          ? notes.map((note) => {
+              return <NoteItem key={note._id} note={note} />;
+            })
+          : "No Notes"}
       </div>
     </div>
   );
