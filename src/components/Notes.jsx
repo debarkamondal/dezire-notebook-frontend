@@ -4,11 +4,12 @@ import NoteItem from "./NoteItem";
 
 const Notes = () => {
   const context = useContext(noteContext);
-  const { notes, getNotes } = context;
+  const { notes, getNotes, authToken } = context;
 
   useEffect(() => {
     getNotes();
-  }, []);
+    // eslint-disable-next-line
+  }, [authToken]);
   return (
     <div className="container">
       <h2 className="text-center">Your Notes</h2>

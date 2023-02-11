@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import noteContext from "../context/notes/noteContext";
+
 const LoginPage = () => {
+  const { setauthToken } = useContext(noteContext);
   const [creds, setCreds] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -20,7 +23,10 @@ const LoginPage = () => {
       body: JSON.stringify({ email: creds.email, password: creds.password }),
     });
     const json = await response.json();
+
+    // After submiting creds checking the response from the server
     if ("authToken" in json) {
+      setauthToken(json.authToken);
       localStorage.setItem("authToken", json.authToken);
       navigate("/");
     } else console.log("invalid creds");

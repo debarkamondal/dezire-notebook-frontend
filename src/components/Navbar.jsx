@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let location = useLocation();
   useEffect(() => {}, [location]);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
 
   return (
     <>
@@ -50,9 +56,20 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <NavLink to="/login" className="btn btn-primary" role="button">
-              Log in
-            </NavLink>
+            {localStorage.getItem("authToken") ? (
+              <NavLink
+                to="/login"
+                onClick={handleClick}
+                className="btn btn-primary"
+                role="button"
+              >
+                Log out
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="btn btn-primary" role="button">
+                Log in
+              </NavLink>
+            )}
           </div>
         </div>
       </nav>

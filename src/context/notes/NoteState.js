@@ -5,7 +5,7 @@ import NoteContext from "./noteContext";
 const NoteState = (props) => {
   const [notes, setNotes] = useState([]);
   const host = "http://localhost:5000";
-  const authToken = localStorage.getItem("authToken");
+  const [authToken, setauthToken] = useState(localStorage.getItem("authToken"));
   // Fetching notes
   const getNotes = async (url = `${host}/api/notes/fetchallnotes`) => {
     const response = await fetch(url, {
@@ -76,7 +76,16 @@ const NoteState = (props) => {
   };
   return (
     <NoteContext.Provider
-      value={{ notes, addNote, deleteNote, updateNote, getNotes, setNotes }}
+      value={{
+        notes,
+        addNote,
+        deleteNote,
+        updateNote,
+        getNotes,
+        setNotes,
+        authToken,
+        setauthToken,
+      }}
     >
       {props.children}
     </NoteContext.Provider>
