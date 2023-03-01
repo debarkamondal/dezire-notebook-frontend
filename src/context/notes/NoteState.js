@@ -12,7 +12,7 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": authToken,
+        "auth-token": `${authToken}`,
       },
     });
     setNotes(await response.json());

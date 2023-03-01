@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let location = useLocation();
-  useEffect(() => {}, [location]);
   const navigate = useNavigate();
 
   const handleClick = () => {
