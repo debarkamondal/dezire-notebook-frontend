@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import noteContext from "../context/notes/noteContext";
 
 const LoginPage = () => {
@@ -28,14 +28,14 @@ const LoginPage = () => {
     if ("authToken" in json) {
       setauthToken(json.authToken);
       localStorage.setItem("authToken", json.authToken);
-      navigate("/");
+      navigate("/", { replace: true });
     } else console.log("invalid creds");
     return json;
   };
 
   return (
     <div className="container my-3">
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email address
@@ -65,7 +65,7 @@ const LoginPage = () => {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
-      </form>
+      </Form>
     </div>
   );
 };
