@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import noteContext from "../context/notes/noteContext";
 
@@ -6,15 +6,20 @@ const LoginPage = () => {
   const { setauthToken } = useContext(noteContext);
   const [creds, setCreds] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const authToken = localStorage.getItem("authToken");
+
   const handleChange = (e) => {
     setCreds({ ...creds, [e.target.id]: e.target.value });
   };
+
+  useEffect(() => {
+    authToken ? navigate("/") : navigate("/login");
+  }, [authToken]);
 
   const handleSubmit = async (
     e,
     url = "http://localhost:5000/api/auth/login"
   ) => {
-    e.preventDefault();
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -28,8 +33,8 @@ const LoginPage = () => {
     if ("authToken" in json) {
       setauthToken(json.authToken);
       localStorage.setItem("authToken", json.authToken);
-      navigate("/", { replace: true });
-    } else console.log("invalid creds");
+      // navigate("/", { replace: true });
+    }
     return json;
   };
 
