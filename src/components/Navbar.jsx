@@ -65,7 +65,13 @@ const Navbar = () => {
                 Log out
               </NavLink>
             ) : (
-              <NavLink to="/login" className="btn btn-primary" role="button">
+              <NavLink
+                to="/login"
+                className={`btn btn-primary ${
+                  location.pathname === "/login" ? "d-none" : "d-block"
+                }`}
+                role="button"
+              >
                 Log in
               </NavLink>
             )}
