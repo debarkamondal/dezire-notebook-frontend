@@ -10,6 +10,7 @@ import About from "./pages/About";
 import NoteState from "./context/notes/NoteState";
 import RootLayout from "./pages/RootLayout";
 import LoginPage from "./pages/LoginPage";
+import Signup from "./pages/Signup";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<Signup />} />
     </Route>
   )
 );

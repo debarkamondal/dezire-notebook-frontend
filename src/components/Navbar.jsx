@@ -65,15 +65,26 @@ const Navbar = () => {
                 Log out
               </NavLink>
             ) : (
-              <NavLink
-                to="/login"
-                className={`btn btn-primary ${
-                  location.pathname === "/login" ? "d-none" : "d-block"
-                }`}
-                role="button"
-              >
-                Log in
-              </NavLink>
+              <>
+                <NavLink
+                  to="/login"
+                  className={`btn btn-primary ${
+                    location.pathname === "/login" ? "d-none" : "d-block"
+                  }`}
+                  role="button"
+                >
+                  Log in
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  className={`btn btn-primary ${
+                    location.pathname === "/signup" ? "d-none" : "d-block"
+                  }`}
+                  role="button"
+                >
+                  Sign up
+                </NavLink>
+              </>
             )}
           </div>
         </div>
