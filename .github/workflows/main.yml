@@ -37,9 +37,13 @@ jobs:
           username: dezire
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        # uses: docker/build-push-action@v2
         env:
           DOCKER_BUILDKIT: 1
-        with:
-          push: true
-          tags: docker.io/dezire/notebook-frontend:latest
+        # with:
+        #   push: true
+        #   tags: docker.io/dezire/notebook-frontend:latest
+        run: |
+          docker buildx build -t dezire/notebook-backend:latest .
+          docker tag dezire/notebook-frontend:latest dezire/notebook-frontend:latest
+          docker push
