@@ -44,6 +44,6 @@ jobs:
         #   push: true
         #   tags: docker.io/dezire/notebook-frontend:latest
         run: |
-          docker buildx build -t dezire/notebook-backend:latest .
+          docker buildx build -t dezire/notebook-frontend:latest .
           docker tag dezire/notebook-frontend:latest dezire/notebook-frontend:latest
           docker push dezire/notebook-frontend:latest
