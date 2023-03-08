@@ -14,6 +14,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     authToken ? navigate("/") : navigate("/login");
+    // eslint-disable-next-line
   }, [authToken]);
 
   const handleSubmit = async (
