@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  buildx:
+  Node_js_build:
     runs-on: ubuntu-latest
     steps:
       - name: Save state
@@ -23,21 +23,34 @@ jobs:
 
       - name: install dependencies
         run: |
-          mkdir ./build
           yarn install
           yarn build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dezire-notebook-frontend-build
+          path: ./build
 
+  Docker_image_build:
+    runs-on: ubuntu-latest
+    steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
+
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dezire-notebook-frontend-build
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: dezire
           password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build and push
-        # uses: docker/build-push-action@v2
         env:
           DOCKER_BUILDKIT: 1
         # with:
