@@ -33,7 +33,11 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-        platforms: linux/amd64, linux/arm64, linux/arm64/v8
+        with:
+          platforms: |
+            linux/amd64
+            linux/arm64
+            linux/arm64/v8
 
       - name: Download a single artifact
         uses: actions/download-artifact@v3
