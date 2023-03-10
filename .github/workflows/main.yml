@@ -30,6 +30,10 @@ jobs:
           name: dezire-notebook-frontend-build
           path: ./build
 
+  Docker_image_build:
+    runs-on: ubuntu-latest
+    needs: Node_js_build
+    steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -40,6 +44,9 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.5.0
+
+      - name: console log
+        run: ls -la
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
