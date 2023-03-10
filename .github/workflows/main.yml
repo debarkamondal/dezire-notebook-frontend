@@ -27,8 +27,8 @@ jobs:
           yarn build
       - uses: actions/upload-artifact@v3
         with:
-          name: dezire-notebook-frontend-build
-          path: ./build
+          name: build
+          path: ${{github.workspace}}/build
 
   Docker_image_build:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: dezire-notebook-frontend-build
+          name: build
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.5.0
