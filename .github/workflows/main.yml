@@ -28,24 +28,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: Node_js_build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-
-      - name: console log
-        run: |
-          ls -la
-          pwd
 
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
           name: dezire-notebook-frontend-build
-          path: ${{github.workspace}}/build
-
-      - name: console log
-        run: |
-          ls -la
-          pwd
+          path: ./build
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.5.0
@@ -59,6 +52,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ${{github.workspace}}
+          context: ./build
           push: true
           tags: docker.io/dezire/notebook-frontend:latest
