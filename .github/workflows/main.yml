@@ -56,6 +56,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ${{github.workspace}}/build
+          context: "${{github.workspace}}/build"
           push: true
           tags: docker.io/dezire/notebook-frontend:latest
