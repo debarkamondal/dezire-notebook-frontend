@@ -7,12 +7,6 @@ jobs:
   Node_js_build:
     runs-on: ubuntu-latest
     steps:
-      - name: Save state
-        run: echo "{name}={value}" >> $GITHUB_STATE
-
-      - name: Set output
-        run: echo "{name}={value}" >> $GITHUB_OUTPUT
-
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -27,7 +21,7 @@ jobs:
           yarn build
       - uses: actions/upload-artifact@v3
         with:
-          name: build
+          name: dezire-notebook-frontend-build
           path: ${{github.workspace}}/build
 
   Docker_image_build:
@@ -40,7 +34,8 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: build
+          name: dezire-notebook-frontend-build
+          path: ${{github.workspace}}/build
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.5.0
